@@ -9,7 +9,7 @@ const db = mongoose.connection;
 const host = process.env.CLUSTER
 const dbupdateobject = { useNewUrlParser:true, useUnifiedTopology:true, useFindAndModify:false , useCreateIndex: true};
 const moment = require('moment');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const session = require('express-session');
 
 /////////////////////
