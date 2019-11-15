@@ -76,8 +76,8 @@ controller = this;
         method:'PUT',
         url: '/bookmarkapi/' + bookmark._id,
         data: {
-            title: controller.updatedBookmarkTitle,
-            url: controller.updatedBookmarkUrl,
+            title: controller.updatedBookmarkTitle[bookmark.title],
+            url: controller.updatedBookmarkUrl[bookmark.title],
         }
     }).then(
         function(response){

@@ -65,8 +65,8 @@
                                 <a href="{{bookmark.url}}"><h1>{{bookmark.title}}</h1></a>
 
                                 <form ng-submit="main.editBookmark(bookmark);">
-                                    <input type="text" ng-model="main.updatedBookmarkTitle" placeholder="Title"/>
-                                    <input type="text" ng-model="main.updatedBookmarkUrl" placeholder="Url"/>
+                                    <input type="text" ng-model="main.updatedBookmarkTitle[bookmark.title]" placeholder="Title"/>
+                                    <input type="text" ng-model="main.updatedBookmarkUrl[bookmark.title]" placeholder="Url"/>
                                     <input type="submit" value="Edit Bookmark"/>
                                 </form>
                                 <button ng-click="main.deleteBookmark(bookmark)">Delete Bookmark</button>
