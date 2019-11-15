@@ -128,7 +128,7 @@ ng.controller('AuthController', ['$http', function($http){
             }
         }).then(function(response){
             console.log(response);
-            controller2.createusername = 'success';
+            controller2.createusername = 'thanks, now login';
             controller2.createpassword = null;
         }, function(error){
             console.log(error);
@@ -152,6 +152,8 @@ this.logIn = function(getData){
         controller2.displayApp(getData);
     }, function(error){
         console.log(error);
+        controller2.username = 'fail';
+        controller2.password = null;
     })
 }
 
