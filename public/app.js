@@ -128,11 +128,11 @@ ng.controller('AuthController', ['$http', function($http){
             }
         }).then(function(response){
             console.log(response);
-            controller2.createusername = success;
+            controller2.createusername = 'success';
             controller2.createpassword = null;
         }, function(error){
             console.log(error);
-            controller2.createusername = fail;
+            controller2.createusername = 'fail';
             controller2.createpassword = null;
         })
     }
