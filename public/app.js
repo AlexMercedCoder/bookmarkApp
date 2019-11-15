@@ -123,8 +123,8 @@ ng.controller('AuthController', ['$http', function($http){
             method:'POST',
             url:'/users',
             data: {
-                username: this.username,
-                password: this.password
+                username: this.createusername,
+                password: this.createpassword
             }
         }).then(function(response){
             console.log(response);
