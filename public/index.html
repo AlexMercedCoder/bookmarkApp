@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" ng-app="MyApp">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+        <script src="app.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css">
+        <link rel="stylesheet" href="./style.css">
+
+    </head>
+
+<!-- ng-init="main.getBookmarka()" -->
+    <body ng-controller = "MainCtrl as main">
+
+
+        <div ng-controller="AuthController as auth" ng-init="auth.displayApp(main.getBookmarks)">
+            <h1 ng-if="!auth.loggedInUsername">Sign Up/Login</h1>
+            <h1 ng-if="auth.loggedInUsername">Alex Merced's Bookmark Application</h1>
+            <h2 ng-if="auth.loggedInUsername"><a href="http://www.alexmercedcoder.com">Alex Merced's Portfolio</a></h2>
+
+
+            <div class="formbar" ng-if="!auth.loggedInUsername">
+                <form ng-submit="auth.createUser()">
+                    <h2>Create User</h2>
+                    <input type="text" ng-model="auth.username" />
+                    <input type="password" ng-model="auth.password" />
+                    <input type="submit" value="Create User">
+                </form>
+
+
+                <form ng-submit="auth.logIn(main.getBookmarks)">
+                    <h2>Log In</h2>
+                    <input type="text" ng-model="auth.username" />
+                    <input type="password" ng-model="auth.password" />
+                    <input type="submit" value="Log In">
+                </form>
+            </div>
+            <div class="formbar">
+                <form ng-submit="auth.logOut(main.clearData)" ng-if="auth.loggedInUsername">
+                    <input type="submit" value="Logout">
+                </form>
+            </div>
+
+
+            <main ng-if="auth.loggedInUsername">
+
+                <div class="container">
+                <form ng-submit="main.createBookmark(auth.loggedInUsername)">
+                    ADD Bookmark
+                    <input type="text" ng-model="main.bookmarkTitle" placeholder="Title"/>
+                    <input type="text" ng-model="main.bookmarkUrl" placeholder="Url"/>
+                    <input type="submit" value="Add Bookmark"/>
+                </form>
+                </div>
+
+            <hr>
+
+                    <div class = "container">
+                        <ul class = "cards">
+                            <li ng-repeat = "bookmark in main.bookmarkArray[0]" class = "card">
+                                <a href="{{bookmark.url}}"><h1>{{bookmark.title}}</h1></a>
+
+                                <form ng-submit="main.editBookmark(bookmark);">
+                                    <input type="text" ng-model="main.updatedBookmarkTitle" placeholder="Title"/>
+                                    <input type="text" ng-model="main.updatedBookmarkUrl" placeholder="Url"/>
+                                    <input type="submit" value="Edit Bookmark"/>
+                                </form>
+                                <button ng-click="main.deleteBookmark(bookmark)">Delete Bookmark</button>
+                            </li>
+                        </ul>
+                    </div>
+
+            <hr>
+
+
+
+
+            </main>
+            <div ng-view></div>
+        </div>
+
+
+
+
+    </body>
+
+
+
+
+</html>
